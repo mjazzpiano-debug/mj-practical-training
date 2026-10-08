@@ -1,0 +1,5040 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no,
+      viewport-fit=cover">
+
+<meta name="theme-color" content="#f7f7f7">
+
+<title>MJ 실전입시 트레이닝</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    background:#f7f7f7;
+}
+
+body{
+    margin:0;
+    background:#f7f7f7;
+    color:#111;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Apple SD Gothic Neo",
+        "Noto Sans KR",
+        Arial,
+        sans-serif;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.app{
+    width:100%;
+    max-width:760px;
+    margin:0 auto;
+    padding:28px 18px 50px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.title{
+    font-size:27px;
+    font-weight:800;
+    letter-spacing:-1.2px;
+    margin-bottom:9px;
+}
+
+.subtitle{
+    font-size:13px;
+    line-height:1.6;
+    color:#666;
+    word-break:keep-all;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+    background:#fff;
+    border:1px solid #e5e5e5;
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:14px;
+    box-shadow:0 3px 12px rgba(0,0,0,.035);
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title{
+    font-size:13px;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+
+/* =========================
+   GENRE
+========================= */
+
+.genre-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:7px;
+}
+
+.genre-btn{
+    border:1px solid #ddd;
+    background:#fff;
+    color:#333;
+    border-radius:10px;
+    padding:11px 4px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.genre-btn.active{
+    background:#111;
+    color:#fff;
+    border-color:#111;
+}
+
+.genre-btn:active{
+    transform:scale(.97);
+}
+
+
+/* =========================
+   START
+========================= */
+
+.start-btn{
+    width:100%;
+    border:0;
+    background:#111;
+    color:#fff;
+    border-radius:13px;
+    padding:16px;
+    font-size:16px;
+    font-weight:800;
+    margin-top:15px;
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+.result-card{
+    display:none;
+}
+
+.result-card.show{
+    display:block;
+}
+
+.result-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.genre-name{
+    font-size:22px;
+    font-weight:850;
+    letter-spacing:-.8px;
+}
+
+.type-text{
+    margin-top:5px;
+    font-size:13px;
+    color:#666;
+    line-height:1.55;
+    word-break:keep-all;
+}
+
+.bpm-box{
+    flex-shrink:0;
+    text-align:right;
+}
+
+.bpm-label{
+    font-size:10px;
+    color:#999;
+}
+
+.bpm-value{
+    font-size:21px;
+    font-weight:850;
+}
+
+
+/* =========================
+   PROGRESSION
+========================= */
+
+.progression{
+    border-top:1px solid #222;
+    border-bottom:1px solid #222;
+}
+
+.progression-row{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+}
+
+.progression-row + .progression-row{
+    border-top:1px solid #222;
+}
+
+.chord-cell{
+    min-height:78px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:8px 5px;
+
+    text-align:center;
+
+    font-size:clamp(13px,3.4vw,19px);
+    font-weight:750;
+
+    line-height:1.25;
+    letter-spacing:-.5px;
+
+    overflow:hidden;
+}
+
+.chord-cell + .chord-cell{
+    border-left:1px solid #ddd;
+}
+
+.chord-group{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    white-space:nowrap;
+}
+
+.chord-group.three{
+    gap:6px;
+}
+
+.chord-separator{
+    color:#aaa;
+    font-size:.7em;
+    font-weight:500;
+}
+
+.funk-repeat{
+    font-size:1em;
+    font-weight:700;
+}
+
+
+/* =========================
+   LOCK
+========================= */
+
+.lock-btn{
+    width:100%;
+    margin-top:12px;
+    min-height:45px;
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:10px;
+    font-size:12px;
+    font-weight:750;
+}
+
+.lock-btn.locked{
+    background:#111;
+    color:#fff;
+    border-color:#111;
+}
+
+
+/* =========================
+   METRONOME
+========================= */
+
+.metro-card{
+    display:block;
+}
+
+.metro-card.hidden{
+    display:none;
+}
+
+.metro-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.metro-title{
+    font-size:15px;
+    font-weight:800;
+}
+
+.metro-status{
+    font-size:11px;
+    color:#888;
+}
+
+.metro-toggle{
+    width:100%;
+    min-height:48px;
+    border:1px solid #ddd;
+    border-radius:11px;
+    background:#fff;
+    font-size:13px;
+    font-weight:800;
+}
+
+.metro-toggle.on{
+    background:#111;
+    color:#fff;
+    border-color:#111;
+}
+
+
+/* =========================
+   BPM
+========================= */
+
+.bpm-controls{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-top:13px;
+}
+
+.bpm-adjust{
+    width:48px;
+    height:42px;
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:700;
+}
+
+.bpm-display{
+    flex:1;
+    text-align:center;
+    font-size:17px;
+    font-weight:800;
+}
+
+
+/* =========================
+   VOLUME
+========================= */
+
+.metro-volume{
+    margin-top:16px;
+}
+
+.control-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:11px;
+    color:#777;
+    margin-bottom:7px;
+}
+
+input[type="range"]{
+    width:100%;
+    accent-color:#111;
+}
+
+
+/* =========================
+   WAKE LOCK
+========================= */
+
+.awake-btn{
+    width:100%;
+    min-height:44px;
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:10px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.awake-btn.active{
+    background:#f0f0f0;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:560px){
+
+    .app{
+        padding:22px 13px 42px;
+    }
+
+    .title{
+        font-size:24px;
+    }
+
+    .subtitle{
+        font-size:12px;
+    }
+
+    .card{
+        padding:16px;
+        border-radius:14px;
+    }
+
+    .genre-grid{
+        gap:5px;
+    }
+
+    .genre-btn{
+        font-size:11px;
+        padding:10px 2px;
+    }
+
+    .chord-cell{
+        min-height:68px;
+        font-size:13px;
+        padding-left:3px;
+        padding-right:3px;
+    }
+
+    .chord-group{
+        gap:7px;
+    }
+
+    .chord-group.three{
+        gap:4px;
+    }
+
+}
+
+@media(max-width:360px){
+
+    .app{
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .card{
+        padding:14px;
+    }
+
+    .chord-cell{
+        font-size:12px;
+    }
+
+    .chord-group{
+        gap:5px;
+    }
+
+    .chord-group.three{
+        gap:3px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<header class="header">
+
+    <div class="title">
+        MJ 실전입시 트레이닝
+    </div>
+
+    <div class="subtitle">
+        실전과 유사한 장르 · 코드진행 · 화성진행을
+        랜덤으로 출제합니다.
+    </div>
+
+</header>
+
+
+<section class="card">
+
+    <div class="section-title">
+        장르 선택
+    </div>
+
+    <div class="genre-grid">
+
+        <button
+            class="genre-btn active"
+            data-genre="random">
+            랜덤
+        </button>
+
+        <button
+            class="genre-btn"
+            data-genre="funk">
+            펑크
+        </button>
+
+        <button
+            class="genre-btn"
+            data-genre="bossa">
+            보사노바
+        </button>
+
+        <button
+            class="genre-btn"
+            data-genre="swing">
+            스윙
+        </button>
+
+        <button
+            class="genre-btn"
+            data-genre="ballad">
+            재즈발라드
+        </button>
+
+    </div>
+
+
+    <button
+        class="start-btn"
+        id="startBtn">
+
+        🎲 랜덤 실전 시작
+
+    </button>
+
+</section>
+
+
+<section
+    class="card result-card"
+    id="resultCard">
+
+    <div class="result-top">
+
+        <div>
+
+            <div
+                class="genre-name"
+                id="genreName">
+                -
+            </div>
+
+            <div
+                class="type-text"
+                id="typeText">
+            </div>
+
+        </div>
+
+
+        <div
+            class="bpm-box"
+            id="bpmBox">
+
+            <div class="bpm-label">
+                BPM
+            </div>
+
+            <div
+                class="bpm-value"
+                id="bpmValue">
+                72
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="progression">
+
+        <div
+            class="progression-row"
+            id="progressionRow1">
+        </div>
+
+        <div
+            class="progression-row"
+            id="progressionRow2">
+        </div>
+
+    </div>
+
+
+    <button
+        class="lock-btn"
+        id="lockBtn">
+
+        🔓 현재 문제 잠금
+
+    </button>
+
+</section>
+
+
+<section
+    class="card metro-card"
+    id="metroCard">
+
+    <div class="metro-head">
+
+        <div class="metro-title">
+            메트로놈
+        </div>
+
+        <div
+            class="metro-status"
+            id="metroStatus">
+            OFF
+        </div>
+
+    </div>
+
+
+    <button
+        class="metro-toggle"
+        id="metroToggle">
+
+        메트로놈 OFF
+
+    </button>
+
+
+    <div class="bpm-controls">
+
+        <button
+            class="bpm-adjust"
+            id="bpmMinus">
+            −
+        </button>
+
+
+        <div class="bpm-display">
+
+            <span id="bpmDisplay">
+                72
+            </span>
+
+            BPM
+
+        </div>
+
+
+        <button
+            class="bpm-adjust"
+            id="bpmPlus">
+            +
+        </button>
+
+    </div>
+
+
+    <div class="metro-volume">
+
+        <div class="control-label">
+
+            <span>
+                메트로놈 볼륨
+            </span>
+
+            <span id="volumeValue">
+                70%
+            </span>
+
+        </div>
+
+
+        <input
+            type="range"
+            id="volumeSlider"
+            min="0"
+            max="100"
+            value="70">
+
+    </div>
+
+</section>
+
+
+<section class="card">
+
+    <div class="section-title">
+        연습 환경
+    </div>
+
+    <button
+        class="awake-btn"
+        id="awakeBtn">
+
+        🔒 화면 꺼짐 방지 OFF
+
+    </button>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentProblem = null;
+let selectedGenre = "random";
+let problemLocked = false;
+
+let bpm = 72;
+
+let metroOn = false;
+let audioCtx = null;
+let metroTimer = null;
+let nextBeatTime = 0;
+
+let volume = 0.70;
+
+let wakeLock = null;
+
+
+/* =========================================================
+   GENRE
+========================================================= */
+
+const GENRE_NAMES = {
+
+    funk:"펑크",
+    bossa:"보사노바",
+    swing:"스윙",
+    ballad:"재즈발라드"
+
+};
+
+
+const INSTRUCTIONS = {
+
+    funk:[
+
+        "메트로놈에 맞춰 리듬 8마디 후 솔로 해보세요",
+
+        "오른손으론 보이싱을 누르고 왼손으론 베이스라인을 연주해보세요",
+
+        "펑크 스타일의 양손컴핑 해보세요",
+
+        "펑크 스타일로 자유롭게 연주해보세요"
+
+    ],
+
+    bossa:[
+
+        "메트로놈에 맞춰 리듬 8마디 후 솔로 해보세요",
+
+        "보사노바로 자유롭게 연주해보세요"
+
+    ],
+
+    swing:[
+
+        "컴핑하면서 솔로해보세요",
+
+        "워킹 컴핑 8마디 후 솔로해보세요",
+
+        "자유롭게 연주해보세요",
+
+        "워킹하면서 솔로해보세요"
+
+    ],
+
+    ballad:[
+
+        "인템포 스타일로 연주해보세요",
+
+        "자유롭게 연주해보세요",
+
+        "멜로디를 살려서 연주해보세요"
+
+    ]
+
+};
+
+
+/* =========================================================
+   RANDOM
+========================================================= */
+
+function randomInt(min,max){
+
+    return Math.floor(
+        Math.random()*(max-min+1)
+    )+min;
+
+}
+
+
+/* =========================================================
+   BPM
+========================================================= */
+
+function randomBpm(genre){
+
+    if(genre==="funk")
+        return randomInt(65,80);
+
+    if(genre==="bossa")
+        return randomInt(90,105);
+
+    if(genre==="swing"){
+
+        if(Math.random()<0.18)
+            return randomInt(160,200);
+
+        return randomInt(110,130);
+
+    }
+
+    return null;
+
+}
+
+
+/* =========================================================
+   NOTE SYSTEM
+========================================================= */
+
+const PC = {
+
+    C:0,
+    "C#":1,
+    Db:1,
+    D:2,
+    "D#":3,
+    Eb:3,
+    E:4,
+    F:5,
+    "F#":6,
+    Gb:6,
+    G:7,
+    "G#":8,
+    Ab:8,
+    A:9,
+    "A#":10,
+    Bb:10,
+    B:11
+
+};
+
+
+const FLAT_NAMES = [
+
+    "C",
+    "Db",
+    "D",
+    "Eb",
+    "E",
+    "F",
+    "Gb",
+    "G",
+    "Ab",
+    "A",
+    "Bb",
+    "B"
+
+];
+
+
+const KEYS = [
+
+    "C",
+    "Db",
+    "D",
+    "Eb",
+    "E",
+    "F",
+    "Gb",
+    "G",
+    "Ab",
+    "A",
+    "Bb",
+    "B"
+
+];
+
+
+function noteFromPC(pc){
+
+    return FLAT_NAMES[
+        (pc+120)%12
+    ];
+
+}
+
+
+function rootPC(note){
+
+    return PC[note];
+
+}
+
+
+/* =========================================================
+   CHORD BUILDERS
+========================================================= */
+
+function major7(root,tension=""){
+
+    return noteFromPC(rootPC(root))+"M7"+tension;
+
+}
+
+
+function minor7(root,tension=""){
+
+    return noteFromPC(rootPC(root))+"m7"+tension;
+
+}
+
+
+function minor7b5(root,tension=""){
+
+    return noteFromPC(rootPC(root))+"m7b5"+tension;
+
+}
+
+
+function dominant7(root,tension=""){
+
+    return noteFromPC(rootPC(root))+"7"+tension;
+
+}
+
+
+function sus(root){
+
+    return noteFromPC(rootPC(root))+"7sus4";
+
+}
+
+
+function alt(root){
+
+    return noteFromPC(rootPC(root))+"7alt";
+
+}
+
+
+function diminished7(root){
+
+    return noteFromPC(rootPC(root))+"dim7";
+
+}
+
+
+function minor6(root){
+
+    return noteFromPC(rootPC(root))+"m6";
+
+}
+
+
+function dominantSus(root){
+
+    return noteFromPC(rootPC(root))+"7sus";
+
+}
+
+
+/* =========================================================
+   HARMONIC HELPERS
+========================================================= */
+
+function chordAt(key,interval,type="m7",tension=""){
+
+    const root =
+        noteFromPC(
+            rootPC(key)+interval
+        );
+
+    if(type==="M7")
+        return major7(root,tension);
+
+    if(type==="7")
+        return dominant7(root,tension);
+
+    if(type==="m7b5")
+        return minor7b5(root,tension);
+
+    if(type==="m6")
+        return minor6(root);
+
+    if(type==="sus")
+        return sus(root);
+
+    if(type==="alt")
+        return alt(root);
+
+    return minor7(root,tension);
+
+}
+
+
+function secondaryDominant(target,tension=""){
+
+    return dominant7(
+        noteFromPC(rootPC(target)+7),
+        tension
+    );
+
+}
+
+
+function tritoneSub(target,tension=""){
+
+    return dominant7(
+        noteFromPC(rootPC(target)+1),
+        tension
+    );
+
+}
+
+
+function secondaryIIV(target,tension=""){
+
+    return [
+
+        minor7(
+            noteFromPC(rootPC(target)+2)
+        ),
+
+        dominant7(
+            noteFromPC(rootPC(target)+7),
+            tension
+        )
+
+    ];
+
+}
+
+
+/* =========================================================
+   MODAL / BORROWED
+========================================================= */
+
+function modalMinorIV(key){
+
+    return minor7(
+        noteFromPC(
+            rootPC(key)+5
+        )
+    );
+
+}
+
+
+function flatVI(key,tension=""){
+
+    return major7(
+        noteFromPC(
+            rootPC(key)+8
+        ),
+        tension
+    );
+
+}
+
+
+function flatVII(key,tension=""){
+
+    return dominant7(
+        noteFromPC(
+            rootPC(key)+10
+        ),
+        tension
+    );
+
+}
+
+
+function flatIII(key,tension=""){
+
+    return major7(
+        noteFromPC(
+            rootPC(key)+3
+        ),
+        tension
+    );
+
+}
+
+
+/* =========================================================
+   BASIC CHORDS
+========================================================= */
+
+function basicChords(key){
+
+    const r =
+        rootPC(key);
+
+    return {
+
+        I:
+            major7(key),
+
+        ii:
+            minor7(
+                noteFromPC(r+2)
+            ),
+
+        iii:
+            minor7(
+                noteFromPC(r+4)
+            ),
+
+        IV:
+            major7(
+                noteFromPC(r+5)
+            ),
+
+        V:
+            dominant7(
+                noteFromPC(r+7)
+            ),
+
+        vi:
+            minor7(
+                noteFromPC(r+9)
+            ),
+
+        vii:
+            minor7b5(
+                noteFromPC(r+11)
+            )
+
+    };
+
+}
+
+
+/* =========================================================
+   STANDARD
+========================================================= */
+
+function createStandardProgression(key){
+
+    const c =
+        basicChords(key);
+
+    const r =
+        rootPC(key);
+
+    const patterns = [
+
+        [
+            [c.ii,c.V],
+            [c.I],
+            [c.vi],
+            [c.ii,c.V],
+            [c.I],
+            [c.IV],
+            [c.ii,c.V],
+            [c.I]
+        ],
+
+        [
+            [c.I],
+            [c.vi],
+            [c.ii,c.V],
+            [c.I],
+            [c.IV],
+            [modalMinorIV(key)],
+            [c.iii,c.V],
+            [c.vi]
+        ],
+
+        [
+            [c.iii],
+            [c.vi],
+            [c.ii],
+            [c.V],
+            [c.I],
+            [c.vi],
+            [c.ii,c.V],
+            [c.I]
+        ],
+
+        [
+            [c.I],
+            [
+                dominant7(
+                    noteFromPC(r+9)
+                )
+            ],
+            [c.ii,c.V],
+            [c.I],
+            [c.IV],
+            [modalMinorIV(key)],
+            [c.ii,c.V],
+            [c.I]
+        ],
+
+        [
+            [c.IV],
+            [c.V],
+            [c.iii,c.vi],
+            [c.ii,c.V],
+            [c.I],
+            [c.vi],
+            [c.ii,c.V],
+            [c.I]
+        ]
+
+    ];
+
+    return patterns[
+        randomInt(
+            0,
+            patterns.length-1
+        )
+    ];
+
+}
+
+
+/* =========================================================
+   ADVANCED
+========================================================= */
+
+function createAdvancedProgression(key){
+
+    const r =
+        rootPC(key);
+
+    const c =
+        basicChords(key);
+
+    const patterns = [];
+
+
+    patterns.push([
+
+        [c.I],
+
+        [
+            dominant7(
+                noteFromPC(r+4),
+                "#9"
+            ),
+            c.vi
+        ],
+
+        [
+            secondaryDominant(
+                noteFromPC(r+2),
+                "b9"
+            ),
+            c.ii
+        ],
+
+        [
+            tritoneSub(
+                noteFromPC(r+7),
+                "#11"
+            )
+        ],
+
+        [c.I],
+
+        [
+            dominant7(
+                noteFromPC(r+1),
+                "b13"
+            )
+        ],
+
+        [
+            c.ii,
+            dominant7(
+                noteFromPC(r+7),
+                "b9"
+            )
+        ],
+
+        [c.vi]
+
+    ]);
+
+
+    patterns.push([
+
+        [c.I],
+
+        [
+            minor7(
+                noteFromPC(r+7)
+            ),
+            dominant7(
+                noteFromPC(r+2),
+                "b9"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+7),
+                "#11"
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+2),
+                "#11"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+2)
+            ),
+            dominant7(
+                noteFromPC(r+9),
+                "b13"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+9)
+            )
+        ],
+
+        [
+            tritoneSub(
+                noteFromPC(r+7),
+                "#11"
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+5),
+                "b9"
+            )
+        ]
+
+    ]);
+
+
+    patterns.push([
+
+        [
+            minor7(
+                noteFromPC(r+2)
+            ),
+            dominant7(
+                noteFromPC(r+7),
+                "b9"
+            )
+        ],
+
+        [c.I],
+
+        [
+            minor7(
+                noteFromPC(r+9)
+            ),
+            dominant7(
+                noteFromPC(r+4),
+                "#9"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+4),
+                "#11"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+11)
+            ),
+            dominant7(
+                noteFromPC(r+4),
+                "b13"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+4)
+            )
+        ],
+
+        [
+            tritoneSub(
+                noteFromPC(r+2),
+                "#11"
+            ),
+            minor7(
+                noteFromPC(r+2)
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+7),
+                "b9"
+            )
+        ]
+
+    ]);
+
+
+    patterns.push([
+
+        [c.I],
+
+        [
+            modalMinorIV(key),
+            flatVII(key)
+        ],
+
+        [
+            flatIII(
+                key,
+                "#11"
+            )
+        ],
+
+        [
+            flatVI(key),
+            flatVII(
+                key,
+                "b13"
+            )
+        ],
+
+        [
+            c.ii,
+            dominant7(
+                noteFromPC(r+7),
+                "b9"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+5)
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+10),
+                "b13"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+3)
+            )
+        ]
+
+    ]);
+
+
+    patterns.push([
+
+        [
+            major7(
+                noteFromPC(r+3),
+                "#11"
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+10),
+                "b9"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+8)
+            ),
+            dominant7(
+                noteFromPC(r+1),
+                "#9"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+6),
+                "#11"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+11)
+            ),
+            dominant7(
+                noteFromPC(r+4),
+                "b13"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+4)
+            )
+        ],
+
+        [
+            tritoneSub(
+                noteFromPC(r+7),
+                "#11"
+            )
+        ],
+
+        [
+            c.vi
+        ]
+
+    ]);
+
+
+    patterns.push([
+
+        [c.I],
+
+        [
+            c.vi,
+            diminished7(
+                noteFromPC(r+10)
+            )
+        ],
+
+        [
+            c.ii,
+            dominant7(
+                noteFromPC(r+7),
+                "b9"
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+1),
+                "#9"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+5),
+                "#11"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+6)
+            ),
+            dominant7(
+                noteFromPC(r+11),
+                "b13"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+4)
+            ),
+            dominant7(
+                noteFromPC(r+9),
+                "b9"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+2)
+            )
+        ]
+
+    ]);
+
+
+    patterns.push([
+
+        [
+            minor7(
+                noteFromPC(r+2)
+            ),
+            dominant7(
+                noteFromPC(r+7),
+                "b9"
+            )
+        ],
+
+        [
+            major7(
+                key
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+9)
+            ),
+            dominant7(
+                noteFromPC(r+2),
+                "#9"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+2),
+                "#11"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+11)
+            ),
+            dominant7(
+                noteFromPC(r+4),
+                "b13"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+4)
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+7)
+            ),
+            dominant7(
+                key,
+                "b9"
+            )
+        ],
+
+        [
+            minor7(
+                key
+            )
+        ]
+
+    ]);
+
+
+    patterns.push([
+
+        [
+            major7(
+                key,
+                "#11"
+            )
+        ],
+
+        [
+            modalMinorIV(key)
+        ],
+
+        [
+            flatVII(
+                key,
+                "b13"
+            )
+        ],
+
+        [
+            tritoneSub(
+                key,
+                "#11"
+            )
+        ],
+
+        [
+            c.I
+        ],
+
+        [
+            flatVI(key),
+            flatVII(
+                key,
+                "b9"
+            )
+        ],
+
+        [
+            c.ii,
+            dominant7(
+                noteFromPC(r+7),
+                "#9"
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+1),
+                "b13"
+            )
+        ]
+
+    ]);
+
+
+    patterns.push([
+
+        [
+            major7(
+                key,
+                "#11"
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+9),
+                "b13"
+            ),
+            minor7(
+                noteFromPC(r+9)
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+2),
+                "b9"
+            ),
+            minor7(
+                noteFromPC(r+2)
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+7),
+                "#9"
+            ),
+            major7(
+                key
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+5)
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+10),
+                "#11"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+3),
+                "#11"
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+6),
+                "b9"
+            )
+        ]
+
+    ]);
+
+
+    patterns.push([
+
+        [
+            dominant7(
+                key,
+                "#9"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+5)
+            ),
+            dominant7(
+                noteFromPC(r+10),
+                "b13"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+3),
+                "#11"
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+6),
+                "b9"
+            )
+        ],
+
+        [
+            minor7(
+                noteFromPC(r+11)
+            ),
+            dominant7(
+                noteFromPC(r+4),
+                "#9"
+            )
+        ],
+
+        [
+            major7(
+                noteFromPC(r+4)
+            )
+        ],
+
+        [
+            tritoneSub(
+                noteFromPC(r+2),
+                "b13"
+            ),
+            minor7(
+                noteFromPC(r+2)
+            )
+        ],
+
+        [
+            dominant7(
+                noteFromPC(r+7),
+                "#9"
+            )
+        ]
+
+    ]);
+
+
+    return patterns[
+        randomInt(
+            0,
+            patterns.length-1
+        )
+    ];
+
+}
+
+
+/* =========================================================
+   FUNK 80%
+   ※ 기존 코드 그대로 유지
+========================================================= */
+
+function createFunkStandardProgression(key){
+
+    const r =
+        rootPC(key);
+
+    const root =
+        key;
+
+    const iv =
+        noteFromPC(r+5);
+
+    const v =
+        noteFromPC(r+7);
+
+    const bII =
+        noteFromPC(r+1);
+
+    const bIII =
+        noteFromPC(r+3);
+
+    const bVI =
+        noteFromPC(r+8);
+
+    const bVII =
+        noteFromPC(r+10);
+
+
+    const susPatterns = [
+
+        [
+            [sus(root)],
+            [sus(root)],
+            [sus(iv)],
+            [sus(iv)],
+            [sus(v)],
+            [sus(v)],
+            [sus(root)],
+            [sus(iv)]
+        ],
+
+        [
+            [sus(root)],
+            [sus(root)],
+            [sus(iv)],
+            [sus(iv)],
+            [sus(bVII)],
+            [sus(bVII)],
+            [sus(iv)],
+            [sus(root)]
+        ],
+
+        [
+            [sus(root)],
+            [sus(root)],
+            [sus(v)],
+            [sus(v)],
+            [sus(iv)],
+            [sus(iv)],
+            [sus(bVII)],
+            [sus(bVII)]
+        ],
+
+        [
+            [sus(bVI)],
+            [sus(bVI)],
+            [sus(bII)],
+            [sus(bII)],
+            [sus(bVII)],
+            [sus(bVII)],
+            [sus(iv)],
+            [sus(iv)]
+        ],
+
+        [
+            [sus(root)],
+            [sus(iv)],
+            [sus(iv)],
+            [sus(bVII)],
+            [sus(bVII)],
+            [sus(bII)],
+            [sus(bII)],
+            [sus(root)]
+        ],
+
+        [
+            [sus(root)],
+            [sus(root)],
+            [sus(bIII)],
+            [sus(bIII)],
+            [sus(iv)],
+            [sus(iv)],
+            [sus(bVII)],
+            [sus(bVII)]
+        ]
+
+    ];
+
+
+    const altPatterns = [
+
+        [
+            [alt(root)],
+            [alt(root)],
+            [alt(iv)],
+            [alt(iv)],
+            [alt(v)],
+            [alt(v)],
+            [alt(root)],
+            [alt(iv)]
+        ],
+
+        [
+            [alt(root)],
+            [alt(root)],
+            [alt(iv)],
+            [alt(iv)],
+            [alt(bVII)],
+            [alt(bVII)],
+            [alt(root)],
+            [alt(v)]
+        ],
+
+        [
+            [alt(root)],
+            [alt(root)],
+            [alt(bII)],
+            [alt(bII)],
+            [alt(bVII)],
+            [alt(bVII)],
+            [alt(iv)],
+            [alt(iv)]
+        ],
+
+        [
+            [alt(bII)],
+            [alt(bII)],
+            [alt(bIII)],
+            [alt(bIII)],
+            [alt(v)],
+            [alt(v)],
+            [alt(root)],
+            [alt(root)]
+        ],
+
+        [
+            [alt(root)],
+            [alt(iv)],
+            [alt(iv)],
+            [alt(bVII)],
+            [alt(bVII)],
+            [alt(v)],
+            [alt(v)],
+            [alt(root)]
+        ],
+
+        [
+            [alt(root)],
+            [alt(root)],
+            [alt(bVI)],
+            [alt(bVI)],
+            [alt(bVII)],
+            [alt(bVII)],
+            [alt(iv)],
+            [alt(root)]
+        ]
+
+    ];
+
+
+    if(Math.random()<0.50){
+
+        return susPatterns[
+            randomInt(
+                0,
+                susPatterns.length-1
+            )
+        ];
+
+    }
+
+
+    return altPatterns[
+        randomInt(
+            0,
+            altPatterns.length-1
+        )
+    ];
+
+}
+
+
+/* =========================================================
+   FUNK 20%
+   ※ 기존 코드 그대로 유지
+========================================================= */
+
+function createFunkJazzProgression(key){
+
+    const c =
+        basicChords(key);
+
+    const r =
+        rootPC(key);
+
+    const patterns = [
+
+        [
+            [c.ii],
+            [c.V],
+            [c.I],
+            [c.vi],
+            [c.ii],
+            [c.V],
+            [c.IV],
+            [c.V]
+        ],
+
+        [
+            [c.I],
+            [c.vi],
+            [c.ii],
+            [c.V],
+            [c.I],
+            [c.IV],
+            [c.ii],
+            [c.V]
+        ],
+
+        [
+            [c.I],
+            [c.vi],
+            [c.ii],
+            [c.V],
+            [c.I],
+            [c.IV],
+            [c.ii],
+            [c.V]
+        ],
+
+        [
+            [c.I],
+            [
+                dominant7(
+                    noteFromPC(r+4),
+                    "b9"
+                )
+            ],
+            [c.vi],
+            [c.ii],
+            [
+                dominant7(
+                    noteFromPC(r+7),
+                    "b9"
+                )
+            ],
+            [c.I],
+            [c.IV],
+            [c.V]
+        ],
+
+        [
+            [c.I],
+            [flatVI(key)],
+            [flatVII(key)],
+            [c.ii],
+            [c.V],
+            [c.I],
+            [modalMinorIV(key)],
+            [c.V]
+        ],
+
+        [
+            [c.ii],
+            [c.V],
+            [c.I],
+            [c.vi],
+            [c.IV],
+            [modalMinorIV(key)],
+            [c.ii],
+            [c.V]
+        ],
+
+        [
+            [c.I],
+            [
+                dominant7(
+                    noteFromPC(r+4),
+                    "#9"
+                )
+            ],
+            [c.vi],
+            [
+                dominant7(
+                    noteFromPC(r+9),
+                    "b13"
+                )
+            ],
+            [c.ii],
+            [
+                dominant7(
+                    noteFromPC(r+7),
+                    "b9"
+                )
+            ],
+            [c.I],
+            [c.V]
+        ]
+
+    ];
+
+
+    return patterns[
+        randomInt(
+            0,
+            patterns.length-1
+        )
+    ];
+
+}
+
+
+/* =========================================================
+   FUNK
+========================================================= */
+
+function createFunkProgression(key){
+
+    if(Math.random()<0.80){
+
+        return createFunkStandardProgression(key);
+
+    }
+
+    return createFunkJazzProgression(key);
+
+}
+
+
+/* =========================================================
+   BOSSA
+========================================================= */
+
+function createBossaProgression(key,type){
+
+    const c =
+        basicChords(key);
+
+    const r =
+        rootPC(key);
+
+    const patterns = [
+
+        [
+            [c.I],
+            [c.vi],
+            [c.ii,c.V],
+            [c.I],
+            [c.IV],
+            [modalMinorIV(key)],
+            [c.ii,c.V],
+            [c.I]
+        ],
+
+        [
+            [c.I],
+            [
+                dominant7(
+                    noteFromPC(r+4),
+                    "b9"
+                ),
+                c.vi
+            ],
+            [c.ii,c.V],
+            [c.I],
+            [c.IV],
+            [modalMinorIV(key)],
+            [c.ii,c.V],
+            [c.I]
+        ],
+
+        [
+            [c.vi],
+            [c.ii,c.V],
+            [c.I],
+            [
+                c.IV,
+                diminished7(
+                    noteFromPC(r+6)
+                )
+            ],
+            [
+                c.iii,
+                dominant7(
+                    noteFromPC(r+9)
+                )
+            ],
+            [c.ii,c.V],
+            [flatVI(key),flatVII(key)],
+            [c.vi]
+        ],
+
+        [
+            [c.I],
+            [
+                dominant7(
+                    noteFromPC(r+4),
+                    "#9"
+                ),
+                c.vi
+            ],
+            [
+                c.ii,
+                dominant7(
+                    noteFromPC(r+7),
+                    "b9"
+                )
+            ],
+            [
+                major7(
+                    noteFromPC(r+2),
+                    "#11"
+                )
+            ],
+            [
+                minor7(
+                    noteFromPC(r+7)
+                ),
+                dominant7(
+                    key,
+                    "b13"
+                )
+            ],
+            [c.IV],
+            [
+                tritoneSub(
+                    noteFromPC(r+7),
+                    "#11"
+                )
+            ],
+            [c.vi]
+        ],
+
+        [
+            [c.I],
+            [flatVI(key),flatVII(key)],
+            [
+                dominant7(
+                    noteFromPC(r+2),
+                    "b9"
+                ),
+                minor7(
+                    noteFromPC(r+2)
+                )
+            ],
+            [
+                major7(
+                    noteFromPC(r+2)
+                )
+            ],
+            [
+                dominant7(
+                    noteFromPC(r+9),
+                    "b13"
+                )
+            ],
+            [c.vi],
+            [
+                dominant7(
+                    noteFromPC(r+1),
+                    "#9"
+                )
+            ],
+            [c.ii]
+        ]
+
+    ];
+
+    return patterns[
+        randomInt(0,patterns.length-1)
+    ];
+
+}
+
+
+/* =========================================================
+   SWING
+========================================================= */
+
+function createSwingProgression(key,type){
+
+    const c =
+        basicChords(key);
+
+    const r =
+        rootPC(key);
+
+    const patterns = [
+
+        [
+            [c.ii,c.V],
+            [c.I,c.vi],
+            [c.ii,c.V],
+            [c.I],
+            [c.vi,c.ii],
+            [c.V],
+            [c.ii,c.V],
+            [c.I]
+        ],
+
+        [
+            [c.I,c.vi],
+            [c.ii,c.V],
+            [c.I],
+            [c.IV],
+            [c.iii,c.vi],
+            [c.ii,c.V],
+            [c.I],
+            [c.V]
+        ],
+
+        [
+            [c.I],
+            [
+                dominant7(
+                    noteFromPC(r+4),
+                    "b9"
+                ),
+                c.vi
+            ],
+            [
+                dominant7(
+                    noteFromPC(r+9),
+                    "b13"
+                ),
+                c.ii
+            ],
+            [
+                tritoneSub(
+                    noteFromPC(r+7),
+                    "#11"
+                )
+            ],
+            [c.I],
+            [modalMinorIV(key),flatVII(key)],
+            [c.ii,c.V],
+            [c.vi]
+        ],
+
+        [
+            [c.ii,c.V],
+            [c.I],
+            [
+                minor7(
+                    noteFromPC(r+7)
+                ),
+                dominant7(
+                    noteFromPC(r+2),
+                    "b9"
+                )
+            ],
+            [
+                major7(
+                    noteFromPC(r+2),
+                    "#11"
+                )
+            ],
+            [
+                minor7(
+                    noteFromPC(r+5)
+                ),
+                dominant7(
+                    noteFromPC(r+10),
+                    "#9"
+                )
+            ],
+            [
+                major7(
+                    noteFromPC(r+3)
+                )
+            ],
+            [
+                tritoneSub(
+                    noteFromPC(r+7),
+                    "b13"
+                )
+            ],
+            [c.V]
+        ],
+
+        [
+            [c.I],
+            [c.vi],
+            [
+                c.ii,
+                dominant7(
+                    noteFromPC(r+1),
+                    "#11"
+                )
+            ],
+            [
+                major7(
+                    noteFromPC(r+6)
+                )
+            ],
+            [
+                minor7(
+                    noteFromPC(r+11)
+                ),
+                dominant7(
+                    noteFromPC(r+4),
+                    "b9"
+                )
+            ],
+            [
+                minor7(
+                    noteFromPC(r+4)
+                )
+            ],
+            [
+                dominant7(
+                    noteFromPC(r+7),
+                    "#9"
+                )
+            ],
+            [c.vi]
+        ]
+
+    ];
+
+    return patterns[
+        randomInt(0,patterns.length-1)
+    ];
+
+}
+
+
+/* =========================================================
+   BALLAD
+========================================================= */
+
+function createBalladProgression(key,type){
+
+    const c =
+        basicChords(key);
+
+    const r =
+        rootPC(key);
+
+    const patterns = [
+
+        [
+            [c.I],
+            [c.I],
+            [c.IV],
+            [modalMinorIV(key)],
+            [c.ii,c.V],
+            [c.I],
+            [c.vi,c.ii],
+            [c.V]
+        ],
+
+        [
+            [c.I],
+            [
+                dominant7(
+                    noteFromPC(r+4),
+                    "b9"
+                ),
+                c.vi
+            ],
+            [c.ii,c.V],
+            [c.I],
+            [c.IV],
+            [modalMinorIV(key),flatVII(key)],
+            [c.ii,c.V],
+            [c.I]
+        ],
+
+        [
+            [c.I],
+            [flatVI(key)],
+            [flatVII(key)],
+            [c.I],
+            [c.IV],
+            [modalMinorIV(key)],
+            [c.ii,c.V],
+            [c.I]
+        ],
+
+        [
+            [c.I],
+            [
+                major7(
+                    noteFromPC(r+1),
+                    "#11"
+                )
+            ],
+            [
+                minor7(
+                    noteFromPC(r+2)
+                ),
+                dominant7(
+                    noteFromPC(r+7),
+                    "b9"
+                )
+            ],
+            [c.I],
+            [
+                flatVI(
+                    key,
+                    "#11"
+                ),
+                flatVII(
+                    key,
+                    "b13"
+                )
+            ],
+            [c.IV],
+            [
+                tritoneSub(
+                    noteFromPC(r+7),
+                    "#11"
+                )
+            ],
+            [c.vi]
+        ],
+
+        [
+            [c.I],
+            [c.vi],
+            [c.ii,c.V],
+            [
+                major7(
+                    noteFromPC(r+3)
+                )
+            ],
+            [
+                dominant7(
+                    noteFromPC(r+6),
+                    "b9"
+                )
+            ],
+            [
+                minor7(
+                    noteFromPC(r+6)
+                )
+            ],
+            [
+                dominant7(
+                    noteFromPC(r+7),
+                    "b13"
+                )
+            ],
+            [c.ii]
+        ]
+
+    ];
+
+    return patterns[
+        randomInt(0,patterns.length-1)
+    ];
+
+}
+
+
+/* =========================================================
+   TENSION SYSTEM
+========================================================= */
+
+function removeTension(chord){
+
+    if(typeof chord!=="string")
+        return chord;
+
+    return chord
+        .replace(/b9/g,"")
+        .replace(/#9/g,"")
+        .replace(/#11/g,"")
+        .replace(/b13/g,"");
+
+}
+
+
+function isPlainDominantChord(chord){
+
+    if(typeof chord!=="string")
+        return false;
+
+
+    const clean =
+        removeTension(chord);
+
+
+    if(
+        /sus|alt|dim/.test(clean)
+    ){
+
+        return false;
+
+    }
+
+
+    return /^[A-G](?:b|#)?7$/.test(
+        clean
+    );
+
+}
+
+
+function isTensionTarget(chord){
+
+    if(typeof chord!=="string")
+        return false;
+
+
+    const clean =
+        removeTension(chord);
+
+
+    if(
+        /sus|alt|dim/.test(clean)
+    ){
+
+        return false;
+
+    }
+
+
+    return /^[A-G](?:b|#)?7$/.test(
+        clean
+    );
+
+}
+
+
+function cleanAllTensions(bars){
+
+    if(!Array.isArray(bars))
+        return bars;
+
+
+    return bars.map(
+        bar => {
+
+            if(!Array.isArray(bar))
+                return bar;
+
+
+            return bar.map(
+                chord =>
+                    removeTension(chord)
+            );
+
+        }
+    );
+
+}
+
+
+function applyTensionFrequency(bars){
+
+    if(!Array.isArray(bars))
+        return bars;
+
+
+    const cleanBars =
+        cleanAllTensions(bars);
+
+
+    if(Math.random()>=0.10){
+
+        return cleanBars;
+
+    }
+
+
+    const candidates = [];
+
+
+    cleanBars.forEach(
+        (bar,barIndex)=>{
+
+            if(!Array.isArray(bar))
+                return;
+
+
+            bar.forEach(
+                (chord,chordIndex)=>{
+
+                    if(
+                        isTensionTarget(chord)
+                    ){
+
+                        candidates.push({
+
+                            barIndex:
+                                barIndex,
+
+                            chordIndex:
+                                chordIndex,
+
+                            chord:
+                                chord
+
+                        });
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    if(candidates.length===0){
+
+        bars.forEach(
+            (bar,barIndex)=>{
+
+                if(!Array.isArray(bar))
+                    return;
+
+
+                bar.forEach(
+                    (chord,chordIndex)=>{
+
+                        if(
+                            typeof chord==="string" &&
+                            /b9|#9|#11|b13/.test(chord)
+                        ){
+
+                            candidates.push({
+
+                                barIndex:
+                                    barIndex,
+
+                                chordIndex:
+                                    chordIndex,
+
+                                chord:
+                                    removeTension(chord)
+
+                            });
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+    if(candidates.length===0){
+
+        return cleanBars;
+
+    }
+
+
+    const selected =
+        candidates[
+            randomInt(
+                0,
+                candidates.length-1
+            )
+        ];
+
+
+    const tensions = [
+
+        "b9",
+        "#9",
+        "#11",
+        "b13"
+
+    ];
+
+
+    const tension =
+        tensions[
+            randomInt(
+                0,
+                tensions.length-1
+            )
+        ];
+
+
+    cleanBars[
+        selected.barIndex
+    ][
+        selected.chordIndex
+    ] =
+        selected.chord + tension;
+
+
+    return cleanBars;
+
+}
+
+
+/* =========================================================
+   PROGRESSION VARIETY
+========================================================= */
+
+/*
+ * 코드의 성질만 추출
+ *
+ * 텐션은 반복 판단에서 제외한다.
+ */
+
+function chordQuality(chord){
+
+    if(typeof chord!=="string")
+        return "";
+
+
+    const clean =
+        removeTension(chord);
+
+
+    if(/m7b5/.test(clean))
+        return "m7b5";
+
+    if(/M7/.test(clean))
+        return "M7";
+
+    if(/m7/.test(clean))
+        return "m7";
+
+    if(/7sus4/.test(clean))
+        return "7sus4";
+
+    if(/7sus/.test(clean))
+        return "7sus";
+
+    if(/7alt/.test(clean))
+        return "7alt";
+
+    if(/7/.test(clean))
+        return "7";
+
+    if(/dim7/.test(clean))
+        return "dim7";
+
+    if(/m6/.test(clean))
+        return "m6";
+
+    return clean;
+
+}
+
+
+/*
+ * 같은 도수 + 같은 코드 성질로 비교
+ */
+
+function chordShape(chord,key){
+
+    if(typeof chord!=="string")
+        return String(chord);
+
+
+    const clean =
+        removeTension(chord);
+
+
+    let root = "";
+
+
+    if(
+        clean.length>=2 &&
+        PC[clean.slice(0,2)]!==undefined
+    ){
+
+        root =
+            clean.slice(0,2);
+
+    }
+    else{
+
+        root =
+            clean.slice(0,1);
+
+    }
+
+
+    const pc =
+        rootPC(root);
+
+
+    const relative =
+        ((pc-rootPC(key))+120)%12;
+
+
+    return relative+"_"+chordQuality(chord);
+
+}
+
+
+/*
+ * 한 마디의 형태
+ */
+
+function barShape(bar,key){
+
+    if(!Array.isArray(bar))
+        return "";
+
+
+    return bar
+        .map(
+            chord =>
+                chordShape(
+                    chord,
+                    key
+                )
+        )
+        .join("+");
+
+}
+
+
+/*
+ * 2마디 형태
+ */
+
+function twoBarShape(
+    bars,
+    start,
+    key
+){
+
+    return [
+
+        barShape(
+            bars[start],
+            key
+        ),
+
+        barShape(
+            bars[start+1],
+            key
+        )
+
+    ].join("|");
+
+}
+
+
+/*
+ * 4마디 형태
+ */
+
+function fourBarShape(
+    bars,
+    start,
+    key
+){
+
+    return [
+
+        barShape(
+            bars[start],
+            key
+        ),
+
+        barShape(
+            bars[start+1],
+            key
+        ),
+
+        barShape(
+            bars[start+2],
+            key
+        ),
+
+        barShape(
+            bars[start+3],
+            key
+        )
+
+    ].join("|");
+
+}
+
+
+/* =========================================================
+   REPETITION CHECK
+========================================================= */
+
+/*
+ * 동일한 코드가 몇 번 등장하는지 확인
+ */
+
+function countChordShape(
+    bars,
+    key,
+    targetShape
+){
+
+    let count = 0;
+
+
+    bars.forEach(
+        bar => {
+
+            if(!Array.isArray(bar))
+                return;
+
+
+            bar.forEach(
+                chord => {
+
+                    if(
+                        chordShape(
+                            chord,
+                            key
+                        )===targetShape
+                    ){
+
+                        count++;
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    return count;
+
+}
+
+
+/*
+ * I(M7)이 3번 이상 반복되는 경우 제거.
+ *
+ * 예:
+ *
+ * CM7
+ * ...
+ * CM7
+ * ...
+ * CM7
+ *
+ * 2번까지는 자연스러운 반복으로 허용.
+ */
+
+function hasTooMuchMajorTonic(
+    bars,
+    key
+){
+
+    const tonicShape =
+        "0_M7";
+
+
+    const count =
+        countChordShape(
+            bars,
+            key,
+            tonicShape
+        );
+
+
+    return count>=3;
+
+}
+
+
+/*
+ * 같은 ii → V가 여러 번 반복되는지 확인.
+ *
+ * 서로 다른 ii-V는 허용한다.
+ *
+ * 예:
+ *
+ * Dm7 → G7
+ * Em7 → A7
+ *
+ * 는 허용.
+ *
+ * Dm7 → G7
+ * Dm7 → G7
+ *
+ * 는 제거.
+ */
+
+function hasRepeatedTwoFive(
+    bars,
+    key
+){
+
+    const shapes = [];
+
+
+    bars.forEach(
+        bar => {
+
+            if(
+                !Array.isArray(bar) ||
+                bar.length!==2
+            ){
+
+                return;
+
+            }
+
+
+            const first =
+                bar[0];
+
+            const second =
+                bar[1];
+
+
+            if(
+                typeof first!=="string" ||
+                typeof second!=="string"
+            ){
+
+                return;
+
+            }
+
+
+            const firstShape =
+                chordShape(
+                    first,
+                    key
+                );
+
+            const secondShape =
+                chordShape(
+                    second,
+                    key
+                );
+
+
+            const firstRelative =
+                parseInt(
+                    firstShape.split("_")[0]
+                );
+
+            const secondRelative =
+                parseInt(
+                    secondShape.split("_")[0]
+                );
+
+
+            const firstQuality =
+                chordQuality(first);
+
+            const secondQuality =
+                chordQuality(second);
+
+
+            if(
+                firstRelative===2 &&
+                firstQuality==="m7" &&
+                secondRelative===7 &&
+                secondQuality==="7"
+            ){
+
+                shapes.push(
+                    firstShape+
+                    "|"+
+                    secondShape
+                );
+
+            }
+
+        }
+    );
+
+
+    const counts = {};
+
+
+    shapes.forEach(
+        shape => {
+
+            counts[shape] =
+                (counts[shape]||0)+1;
+
+        }
+    );
+
+
+    for(
+        const shape in counts
+    ){
+
+        if(
+            counts[shape]>=2
+        ){
+
+            return true;
+
+        }
+
+    }
+
+
+    return false;
+
+}
+
+
+/*
+ * 앞 4마디와 뒤 4마디에서
+ * 동일한 2마디 핵심 패턴이
+ * 지나치게 반복되는지 확인.
+ *
+ * 한 번 정도 겹치는 것은 허용.
+ * 두 번 이상 겹치면 제거.
+ */
+
+function hasRepeatedHalfProgression(
+    bars,
+    key
+){
+
+    const firstHalf = [];
+    const secondHalf = [];
+
+
+    for(
+        let i=0;
+        i<3;
+        i++
+    ){
+
+        firstHalf.push(
+            twoBarShape(
+                bars,
+                i,
+                key
+            )
+        );
+
+
+        secondHalf.push(
+            twoBarShape(
+                bars,
+                i+4,
+                key
+            )
+        );
+
+    }
+
+
+    let repeatedCount = 0;
+
+
+    firstHalf.forEach(
+        shape => {
+
+            if(
+                secondHalf.includes(shape)
+            ){
+
+                repeatedCount++;
+
+            }
+
+        }
+    );
+
+
+    return repeatedCount>=2;
+
+}
+
+
+/*
+ * 동일한 2마디 진행이
+ * 전체 8마디에서 3번 이상 반복되면 제거.
+ */
+
+function hasRepeatedTwoBarPattern(
+    bars,
+    key
+){
+
+    const shapes = [];
+
+
+    for(
+        let i=0;
+        i<7;
+        i++
+    ){
+
+        shapes.push(
+            twoBarShape(
+                bars,
+                i,
+                key
+            )
+        );
+
+    }
+
+
+    const counts = {};
+
+
+    shapes.forEach(
+        shape => {
+
+            counts[shape] =
+                (counts[shape]||0)+1;
+
+        }
+    );
+
+
+    for(
+        const shape in counts
+    ){
+
+        if(
+            counts[shape]>=3
+        ){
+
+            return true;
+
+        }
+
+    }
+
+
+    return false;
+
+}
+
+
+/*
+ * 전체 반복성 검사
+ */
+
+function hasTooMuchRepetition(
+    bars,
+    key
+){
+
+    if(
+        !Array.isArray(bars) ||
+        bars.length!==8
+    ){
+
+        return false;
+
+    }
+
+
+    /*
+     * =========================================
+     * 1. 앞 4마디 = 뒤 4마디
+     * =========================================
+     */
+
+    const firstFour =
+        fourBarShape(
+            bars,
+            0,
+            key
+        );
+
+
+    const secondFour =
+        fourBarShape(
+            bars,
+            4,
+            key
+        );
+
+
+    if(
+        firstFour===secondFour
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+     * =========================================
+     * 2. 동일한 2마디가 3회 이상
+     * =========================================
+     */
+
+    if(
+        hasRepeatedTwoBarPattern(
+            bars,
+            key
+        )
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+     * =========================================
+     * 3. 앞 4마디의 핵심 진행이
+     *    뒤 4마디에서 반복
+     * =========================================
+     */
+
+    if(
+        hasRepeatedHalfProgression(
+            bars,
+            key
+        )
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+     * =========================================
+     * 4. I(M7) 3회 이상
+     * =========================================
+     */
+
+    if(
+        hasTooMuchMajorTonic(
+            bars,
+            key
+        )
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+     * =========================================
+     * 5. 동일한 ii-V 반복
+     * =========================================
+     */
+
+    if(
+        hasRepeatedTwoFive(
+            bars,
+            key
+        )
+    ){
+
+        return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =========================================================
+   FRONT DOMINANT FILTER
+========================================================= */
+
+function hasFrontDominant(bars){
+
+    if(!Array.isArray(bars))
+        return false;
+
+
+    for(
+        let i=0;
+        i<bars.length;
+        i++
+    ){
+
+        const bar =
+            bars[i];
+
+
+        if(
+            !Array.isArray(bar) ||
+            bar.length!==2
+        ){
+
+            continue;
+
+        }
+
+
+        const first =
+            bar[0];
+
+        const second =
+            bar[1];
+
+
+        if(
+            typeof first!=="string" ||
+            typeof second!=="string"
+        ){
+
+            continue;
+
+        }
+
+
+        const firstIsDominant =
+            isPlainDominantChord(
+                first
+            );
+
+
+        const secondIsDominant =
+            isPlainDominantChord(
+                second
+            );
+
+
+        if(
+            firstIsDominant &&
+            !secondIsDominant
+        ){
+
+            return true;
+
+        }
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =========================================================
+   GENERAL PROGRESSION
+========================================================= */
+
+function createVariedProgression(
+    genre,
+    key,
+    type
+){
+
+    let bars;
+
+
+    for(
+        let attempt=0;
+        attempt<80;
+        attempt++
+    ){
+
+        if(genre==="bossa"){
+
+            bars =
+                type==="STANDARD"
+                    ? createStandardProgression(key)
+                    : createBossaProgression(
+                        key,
+                        type
+                    );
+
+        }
+        else if(genre==="swing"){
+
+            bars =
+                type==="STANDARD"
+                    ? createStandardProgression(key)
+                    : createSwingProgression(
+                        key,
+                        type
+                    );
+
+        }
+        else{
+
+            bars =
+                type==="STANDARD"
+                    ? createStandardProgression(key)
+                    : createBalladProgression(
+                        key,
+                        type
+                    );
+
+        }
+
+
+        /*
+         * 반복성 검사
+         */
+
+        if(
+            hasTooMuchRepetition(
+                bars,
+                key
+            )
+        ){
+
+            continue;
+
+        }
+
+
+        /*
+         * 앞 Dominant 거의 제거
+         */
+
+        if(
+            hasFrontDominant(
+                bars
+            )
+        ){
+
+            if(
+                Math.random()<0.99
+            ){
+
+                continue;
+
+            }
+
+        }
+
+
+        return bars;
+
+    }
+
+
+    return bars;
+
+}
+
+
+/* =========================================================
+   80 / 20
+========================================================= */
+
+function getHarmonyType(){
+
+    return Math.random()<0.80
+        ? "STANDARD"
+        : "ADVANCED";
+
+}
+
+
+/* =========================================================
+   GENERAL PROGRESSION
+========================================================= */
+
+function createProgression(genre){
+
+    const key =
+        KEYS[
+            randomInt(
+                0,
+                KEYS.length-1
+            )
+        ];
+
+
+    /*
+     * Funk는 기존 80 / 20 구조 그대로.
+     */
+
+    if(genre==="funk"){
+
+        const funkType =
+            Math.random()<0.80
+                ? "FUNK"
+                : "JAZZ";
+
+
+        return {
+
+            key:key,
+
+            type:funkType,
+
+            bars:
+                funkType==="FUNK"
+                    ? createFunkStandardProgression(key)
+                    : createFunkJazzProgression(key)
+
+        };
+
+    }
+
+
+    const type =
+        getHarmonyType();
+
+
+    return {
+
+        key:key,
+
+        type:type,
+
+        bars:
+            createVariedProgression(
+                genre,
+                key,
+                type
+            )
+
+    };
+
+}
+
+
+/* =========================================================
+   PROBLEM
+========================================================= */
+
+function createProblem(){
+
+    let genre =
+        selectedGenre;
+
+
+    if(genre==="random"){
+
+        genre =
+            [
+                "funk",
+                "bossa",
+                "swing",
+                "ballad"
+            ][
+                randomInt(0,3)
+            ];
+
+    }
+
+
+    const harmony =
+        createProgression(genre);
+
+
+    /*
+     * Funk는 SUS / ALT 그대로 유지.
+     *
+     * 일반 장르는 약 10% 확률로
+     * 하나의 Dominant 텐션 적용.
+     */
+
+    const finalBars =
+        genre==="funk"
+            ? harmony.bars
+            : applyTensionFrequency(
+                harmony.bars
+            );
+
+
+    const instructionList =
+        INSTRUCTIONS[genre];
+
+
+    const instruction =
+        instructionList[
+            randomInt(
+                0,
+                instructionList.length-1
+            )
+        ];
+
+
+    return {
+
+        genre:genre,
+
+        instruction:instruction,
+
+        bpm:randomBpm(genre),
+
+        key:harmony.key,
+
+        harmonyType:harmony.type,
+
+        bars:finalBars
+
+    };
+
+}
+
+
+/* =========================================================
+   CHORD DISPLAY
+========================================================= */
+
+function renderBar(
+    bar,
+    genre,
+    barIndex,
+    allBars
+){
+
+    const group =
+        document.createElement("div");
+
+
+    group.className =
+        "chord-group";
+
+
+    /*
+     * =========================
+     * FUNK
+     * =========================
+     */
+
+    if(genre==="funk"){
+
+        const span =
+            document.createElement(
+                "span"
+            );
+
+
+        span.className =
+            "chord-part";
+
+
+        const chord =
+            bar[0] || "";
+
+
+        let text =
+            chord;
+
+
+        if(
+            barIndex>0 &&
+            allBars[barIndex-1] &&
+            allBars[barIndex-1].length===1 &&
+            allBars[barIndex-1][0]===chord
+        ){
+
+            text="%";
+
+
+            span.classList.add(
+                "funk-repeat"
+            );
+
+        }
+
+
+        span.textContent =
+            text;
+
+
+        group.appendChild(
+            span
+        );
+
+
+        return group;
+
+    }
+
+
+    /*
+     * =========================
+     * 일반 장르
+     * =========================
+     */
+
+    if(bar.length>=3){
+
+        group.classList.add(
+            "three"
+        );
+
+    }
+
+
+    bar.forEach(
+        (chord,index)=>{
+
+            const span =
+                document.createElement(
+                    "span"
+                );
+
+
+            span.className =
+                "chord-part";
+
+
+            span.textContent =
+                chord;
+
+
+            group.appendChild(
+                span
+            );
+
+
+            if(
+                index<
+                bar.length-1
+            ){
+
+                const separator =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                separator.className =
+                    "chord-separator";
+
+
+                separator.textContent =
+                    "·";
+
+
+                group.appendChild(
+                    separator
+                );
+
+            }
+
+        }
+    );
+
+
+    return group;
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function renderProblem(problem){
+
+    currentProblem =
+        problem;
+
+
+    document.getElementById(
+        "genreName"
+    ).textContent =
+        GENRE_NAMES[
+            problem.genre
+        ];
+
+
+    document.getElementById(
+        "typeText"
+    ).textContent =
+        problem.instruction;
+
+
+    const row1 =
+        document.getElementById(
+            "progressionRow1"
+        );
+
+
+    const row2 =
+        document.getElementById(
+            "progressionRow2"
+        );
+
+
+    row1.innerHTML="";
+    row2.innerHTML="";
+
+
+    for(
+        let i=0;
+        i<8;
+        i++
+    ){
+
+        const cell =
+            document.createElement(
+                "div"
+            );
+
+
+        cell.className =
+            "chord-cell";
+
+
+        cell.appendChild(
+            renderBar(
+                problem.bars[i],
+                problem.genre,
+                i,
+                problem.bars
+            )
+        );
+
+
+        if(i<4){
+
+            row1.appendChild(
+                cell
+            );
+
+        }
+        else{
+
+            row2.appendChild(
+                cell
+            );
+
+        }
+
+    }
+
+
+    const metroCard =
+        document.getElementById(
+            "metroCard"
+        );
+
+
+    const bpmBox =
+        document.getElementById(
+            "bpmBox"
+        );
+
+
+    if(
+        problem.genre==="ballad"
+    ){
+
+        metroCard.classList.add(
+            "hidden"
+        );
+
+
+        bpmBox.style.display =
+            "none";
+
+
+        stopMetronome();
+
+    }
+    else{
+
+        metroCard.classList.remove(
+            "hidden"
+        );
+
+
+        bpmBox.style.display =
+            "block";
+
+
+        bpm =
+            problem.bpm;
+
+
+        document.getElementById(
+            "bpmValue"
+        ).textContent =
+            bpm;
+
+
+        document.getElementById(
+            "bpmDisplay"
+        ).textContent =
+            bpm;
+
+
+        stopMetronome();
+
+    }
+
+
+    document.getElementById(
+        "resultCard"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   NEW PROBLEM
+========================================================= */
+
+async function newProblem(){
+
+    if(problemLocked){
+
+        return;
+
+    }
+
+
+    const problem =
+        createProblem();
+
+
+    renderProblem(
+        problem
+    );
+
+
+    if(
+        problem.genre!=="ballad"
+    ){
+
+        await startMetronome();
+
+    }
+
+}
+
+
+/* =========================================================
+   AUDIO
+========================================================= */
+
+async function createAudioContext(){
+
+    if(!audioCtx){
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+
+        if(!AudioContext){
+
+            return null;
+
+        }
+
+
+        audioCtx =
+            new AudioContext();
+
+    }
+
+
+    if(
+        audioCtx.state==="suspended"
+    ){
+
+        try{
+
+            await audioCtx.resume();
+
+        }
+        catch(e){
+
+            console.log(e);
+
+        }
+
+    }
+
+
+    return audioCtx;
+
+}
+
+
+/* =========================================================
+   CLICK
+========================================================= */
+
+function scheduleClick(
+    time,
+    accent
+){
+
+    if(!audioCtx){
+
+        return;
+
+    }
+
+
+    const osc =
+        audioCtx.createOscillator();
+
+
+    const gain =
+        audioCtx.createGain();
+
+
+    osc.type =
+        "square";
+
+
+    osc.frequency.setValueAtTime(
+        accent ? 1500 : 1000,
+        time
+    );
+
+
+    const clickVolume =
+        volume*
+        (
+            accent
+                ? .9
+                : .62
+        );
+
+
+    gain.gain.setValueAtTime(
+        0,
+        time
+    );
+
+
+    gain.gain.linearRampToValueAtTime(
+        clickVolume,
+        time+.001
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+        .001,
+        time+.045
+    );
+
+
+    osc.connect(
+        gain
+    );
+
+
+    gain.connect(
+        audioCtx.destination
+    );
+
+
+    osc.start(
+        time
+    );
+
+
+    osc.stop(
+        time+.05
+    );
+
+}
+
+
+/* =========================================================
+   SCHEDULER
+========================================================= */
+
+function scheduler(){
+
+    if(
+        !metroOn ||
+        !audioCtx
+    ){
+
+        return;
+
+    }
+
+
+    const secondsPerBeat =
+        60/bpm;
+
+
+    while(
+        nextBeatTime <
+        audioCtx.currentTime+.12
+    ){
+
+        const beatIndex =
+            scheduler.beatIndex || 0;
+
+
+        scheduleClick(
+            nextBeatTime,
+            beatIndex===0
+        );
+
+
+        scheduler.beatIndex =
+            (beatIndex+1)%4;
+
+
+        nextBeatTime +=
+            secondsPerBeat;
+
+    }
+
+
+    metroTimer =
+        setTimeout(
+            scheduler,
+            25
+        );
+
+}
+
+
+/* =========================================================
+   START METRONOME
+========================================================= */
+
+async function startMetronome(){
+
+    if(
+        currentProblem &&
+        currentProblem.genre==="ballad"
+    ){
+
+        return;
+
+    }
+
+
+    const ctx =
+        await createAudioContext();
+
+
+    if(!ctx){
+
+        return;
+
+    }
+
+
+    if(metroTimer){
+
+        clearTimeout(
+            metroTimer
+        );
+
+
+        metroTimer=null;
+
+    }
+
+
+    metroOn=true;
+
+
+    scheduler.beatIndex=0;
+
+
+    nextBeatTime =
+        ctx.currentTime+.08;
+
+
+    scheduler();
+
+
+    updateMetroUI();
+
+}
+
+
+/* =========================================================
+   STOP
+========================================================= */
+
+function stopMetronome(){
+
+    metroOn=false;
+
+
+    if(metroTimer){
+
+        clearTimeout(
+            metroTimer
+        );
+
+
+        metroTimer=null;
+
+    }
+
+
+    scheduler.beatIndex=0;
+
+
+    updateMetroUI();
+
+}
+
+
+/* =========================================================
+   TOGGLE
+========================================================= */
+
+async function toggleMetronome(){
+
+    if(metroOn){
+
+        stopMetronome();
+
+    }
+    else{
+
+        await startMetronome();
+
+    }
+
+}
+
+
+/* =========================================================
+   METRO UI
+========================================================= */
+
+function updateMetroUI(){
+
+    const btn =
+        document.getElementById(
+            "metroToggle"
+        );
+
+
+    const status =
+        document.getElementById(
+            "metroStatus"
+        );
+
+
+    if(metroOn){
+
+        btn.textContent =
+            "메트로놈 ON";
+
+
+        btn.classList.add(
+            "on"
+        );
+
+
+        status.textContent =
+            "ON";
+
+    }
+    else{
+
+        btn.textContent =
+            "메트로놈 OFF";
+
+
+        btn.classList.remove(
+            "on"
+        );
+
+
+        status.textContent =
+            "OFF";
+
+    }
+
+
+    document.getElementById(
+        "bpmDisplay"
+    ).textContent =
+        bpm;
+
+
+    document.getElementById(
+        "bpmValue"
+    ).textContent =
+        bpm;
+
+}
+
+
+/* =========================================================
+   LOCK
+========================================================= */
+
+function toggleLock(){
+
+    problemLocked =
+        !problemLocked;
+
+
+    const btn =
+        document.getElementById(
+            "lockBtn"
+        );
+
+
+    if(problemLocked){
+
+        btn.textContent =
+            "🔒 현재 문제 잠금";
+
+
+        btn.textContent =
+            "🔒 현재 문제 잠금 해제";
+
+
+        btn.classList.add(
+            "locked"
+        );
+
+    }
+    else{
+
+        btn.textContent =
+            "🔓 현재 문제 잠금";
+
+
+        btn.classList.remove(
+            "locked"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   BPM
+========================================================= */
+
+function changeBpm(amount){
+
+    if(
+        !currentProblem ||
+        currentProblem.genre==="ballad"
+    ){
+
+        return;
+
+    }
+
+
+    bpm += amount;
+
+
+    bpm =
+        Math.max(
+            40,
+            Math.min(
+                220,
+                bpm
+            )
+        );
+
+
+    currentProblem.bpm =
+        bpm;
+
+
+    updateMetroUI();
+
+}
+
+
+/* =========================================================
+   VOLUME
+========================================================= */
+
+function updateVolume(value){
+
+    volume =
+        Number(value)/100;
+
+
+    document.getElementById(
+        "volumeValue"
+    ).textContent =
+        value+"%";
+
+}
+
+
+/* =========================================================
+   WAKE LOCK
+========================================================= */
+
+async function enableWakeLock(){
+
+    if(
+        !("wakeLock" in navigator)
+    ){
+
+        alert(
+            "이 브라우저에서는 화면 꺼짐 방지를 지원하지 않습니다."
+        );
+
+
+        return;
+
+    }
+
+
+    try{
+
+        wakeLock =
+            await navigator.wakeLock.request(
+                "screen"
+            );
+
+
+        const btn =
+            document.getElementById(
+                "awakeBtn"
+            );
+
+
+        btn.textContent =
+            "🔒 화면 꺼짐 방지 ON";
+
+
+        btn.classList.add(
+            "active"
+        );
+
+
+        wakeLock.addEventListener(
+            "release",
+            () => {
+
+                wakeLock=null;
+
+
+                btn.textContent =
+                    "🔒 화면 꺼짐 방지 OFF";
+
+
+                btn.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+    catch(e){
+
+        console.log(e);
+
+    }
+
+}
+
+
+async function disableWakeLock(){
+
+    if(wakeLock){
+
+        try{
+
+            await wakeLock.release();
+
+        }
+        catch(e){}
+
+
+        wakeLock=null;
+
+    }
+
+
+    const btn =
+        document.getElementById(
+            "awakeBtn"
+        );
+
+
+    btn.textContent =
+        "🔒 화면 꺼짐 방지 OFF";
+
+
+    btn.classList.remove(
+        "active"
+    );
+
+}
+
+
+async function toggleWakeLock(){
+
+    if(wakeLock){
+
+        await disableWakeLock();
+
+    }
+    else{
+
+        await enableWakeLock();
+
+    }
+
+}
+
+
+/* =========================================================
+   VISIBILITY
+========================================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    async () => {
+
+        if(
+            document.visibilityState==="visible"
+        ){
+
+            if(
+                wakeLock===null
+            ){
+
+                const btn =
+                    document.getElementById(
+                        "awakeBtn"
+                    );
+
+
+                if(
+                    btn.classList.contains(
+                        "active"
+                    )
+                ){
+
+                    await enableWakeLock();
+
+                }
+
+            }
+
+
+            if(
+                metroOn &&
+                audioCtx
+            ){
+
+                try{
+
+                    await audioCtx.resume();
+
+
+                    if(!metroTimer){
+
+                        nextBeatTime =
+                            audioCtx.currentTime+.05;
+
+
+                        scheduler();
+
+                    }
+
+                }
+                catch(e){}
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   GENRE BUTTON
+========================================================= */
+
+document.querySelectorAll(
+    ".genre-btn"
+).forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .querySelectorAll(
+                        ".genre-btn"
+                    )
+                    .forEach(
+                        btn =>
+                            btn.classList.remove(
+                                "active"
+                            )
+                    );
+
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                selectedGenre =
+                    button.dataset.genre;
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   START BUTTON
+========================================================= */
+
+document.getElementById(
+    "startBtn"
+).addEventListener(
+    "click",
+    async () => {
+
+        await createAudioContext();
+
+
+        problemLocked=false;
+
+
+        const lockBtn =
+            document.getElementById(
+                "lockBtn"
+            );
+
+
+        lockBtn.textContent =
+            "🔓 현재 문제 잠금";
+
+
+        lockBtn.classList.remove(
+            "locked"
+        );
+
+
+        await newProblem();
+
+
+        window.scrollTo({
+
+            top:0,
+
+            behavior:"smooth"
+
+        });
+
+    }
+);
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+document.getElementById(
+    "lockBtn"
+).addEventListener(
+    "click",
+    toggleLock
+);
+
+
+document.getElementById(
+    "metroToggle"
+).addEventListener(
+    "click",
+    toggleMetronome
+);
+
+
+document.getElementById(
+    "bpmMinus"
+).addEventListener(
+    "click",
+    () => changeBpm(-5)
+);
+
+
+document.getElementById(
+    "bpmPlus"
+).addEventListener(
+    "click",
+    () => changeBpm(5)
+);
+
+
+document.getElementById(
+    "volumeSlider"
+).addEventListener(
+    "input",
+    e =>
+        updateVolume(
+            e.target.value
+        )
+);
+
+
+document.getElementById(
+    "awakeBtn"
+).addEventListener(
+    "click",
+    toggleWakeLock
+);
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+updateMetroUI();
+
+</script>
+
+</body>
+</html>
